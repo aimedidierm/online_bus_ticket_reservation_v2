@@ -12,7 +12,7 @@
 </head>
 
 
-<body class="bg-gray-100 h-screen flex justify-center items-center">
+<body>
     @yield('content')
 </body>
 
