@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BusController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,15 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 Route::group(["prefix" => "admin", "middleware" => ["auth", "adminCheck"], "as" => "admin."], function () {
     Route::get('/', [DashboardController::class, 'admin']);
+    Route::resource('/buses', BusController::class)->only('index');
+    Route::resource('/users', UserController::class)->only('index');
+    Route::put('/users', [UserController::class, 'updateSingleUser']);
+    Route::view('/settings', 'admin.settings');
+    Route::put('/settings', [UserController::class, 'update']);
 });
 
 Route::group(["prefix" => "passenger", "middleware" => ["auth", "passengerCheck"], "as" => "passenger."], function () {
     Route::get('/', [DashboardController::class, 'passenger']);
+    Route::view('/settings', 'passenger.settings');
+    Route::put('/settings', [UserController::class, 'update']);
 });

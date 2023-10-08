@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('trips', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->enum('role', ['admin', 'passenger'])->default('passenger');
-            $table->string('card')->nullable();
-            $table->rememberToken();
+            $table->string('origin');
+            $table->string('destination');
+            $table->dateTime('time');
+            $table->float('price')->default(0.00);
+            $table->integer('available_places');
+            $table->unsignedBigInteger('bus_id');
+            $table->foreign('bus_id')->on('buses')->references('id')->onDelete("restrict");
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('trips');
     }
 };
