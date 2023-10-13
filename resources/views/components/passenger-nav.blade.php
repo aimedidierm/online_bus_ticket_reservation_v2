@@ -18,6 +18,15 @@
         </a>
         <ul class="space-y-2 font-medium">
             <li>
+                <a href="/passenger"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span class="material-symbols-outlined">
+                        dashboard
+                    </span>
+                    <span class="flex-1 ml-3 whitespace-nowrap">Dashboaard</span>
+                </a>
+            </li>
+            <li>
                 <button type="button"
                     class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                     aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
@@ -33,24 +42,19 @@
                 </button>
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
-                        <a href="#"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Available
-                            Trips</a>
-                    </li>
-                    <li>
-                        <a href="#"
+                        <a href="/passenger/comming"
                             class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Comming
                             Trips</a>
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="/passenger/expired"
                             class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Expired
                             Trips</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="#"
+                <a href="/passenger/payments"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         payments

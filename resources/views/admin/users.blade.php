@@ -99,10 +99,10 @@
                                     placeholder="Enter email" required>
                             </div>
                             <div>
-                                <label for="card"
+                                <label for="editCard"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Card
                                 </label>
-                                <input type="text" name="card" id="card"
+                                <input type="text" name="card" id="editCard"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     placeholder="Enter card ID" required>
                             </div>
@@ -123,14 +123,15 @@
 </div>
 <script>
     function editItem(item) {
+        console.log(item);
         var inputId = document.getElementById('editId');
         inputId.value = item.id;
         var inputNames = document.getElementById('editNames');
         inputNames.value = item.name;
         var inputEmail = document.getElementById('editEmail');
         inputEmail.value = item.email;
-        var inputPhone = document.getElementById('editPhone');
-        inputPhone.value = item.phone;
+        var inputCard = document.getElementById('editCard');
+        inputCard.value = item.card;
     }
 </script>
 @stop

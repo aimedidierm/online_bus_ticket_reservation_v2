@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Trip extends Model
 {
     use HasFactory;
+
+    public function bus()
+    {
+        return $this->belongsTo(Bus::class, 'bus_id');
+    }
 }
