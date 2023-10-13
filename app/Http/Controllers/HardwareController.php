@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\BusLocation;
 use App\Models\Hardware;
+use App\Models\Payment;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HardwareController extends Controller
@@ -41,15 +43,47 @@ class HardwareController extends Controller
         }
 
         if ($request->has('card')) {
-            if ($request->card == "ABC") {
-                return response()->json([
-                    'card_allowed' => true,
-                    'ticket_used' => false,
-                ], 200);
+            $user = User::where('card', $request->card)->first();
+            if ($user) {
+                $payment = Payment::where('user_id', $user->id)->get();
+                if ($payment) {
+                    $payedPayment = $payment->where('status', 'Payed');
+                    if ($payedPayment->isNotEmpty()) {
+                        $onePayment = $payedPayment->first();
+                        $updatePayment = Payment::find($onePayment->id);
+                        $updatePayment->status = 'Used';
+                        $updatePayment->update();
+                        return response()->json([
+                            'card_allowed' => true,
+                            'message' => 'Ticket Found',
+                        ], 200);
+                    }
+                    $usedPayment = $payment->where('status', 'Used');
+                    if ($usedPayment->isNotEmpty()) {
+                        $onePayment = $usedPayment->first();
+                        $updatePayment = Payment::find($onePayment->id);
+                        $updatePayment->status = 'Used';
+                        $updatePayment->update();
+                        return response()->json([
+                            'card_allowed' => true,
+                            'message' => 'Ticket Used',
+                        ], 200);
+                    } else {
+                        return response()->json([
+                            'card_allowed' => false,
+                            'message' => 'Ticket Unpaid',
+                        ], 200);
+                    }
+                } else {
+                    return response()->json([
+                        'card_allowed' => false,
+                        'message' => 'No ticket available',
+                    ], 200);
+                }
             } else {
                 return response()->json([
                     'card_allowed' => false,
-                    'ticket_used' => false,
+                    'message' => 'Card not found',
                 ], 200);
             }
         }
