@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bus;
+use App\Models\BusLocation;
 use App\Models\Payment;
 use App\Models\Trip;
 use Illuminate\Http\Request;
@@ -34,6 +35,12 @@ class TripController extends Controller
         $trips = Payment::where('user_id', Auth::id())->where('status', 'Used')->get();
         $trips->load('trip');
         return view('passenger.expired_trips', ['trips' => $trips]);
+    }
+
+    public function track()
+    {
+        $location = BusLocation::latest()->first();
+        return redirect("http://maps.google.com/maps?&z=15&mrt=yp&t=k&q=$location->location");
     }
 
     public function book(Request $request)

@@ -44,4 +44,5 @@ Route::group(["prefix" => "passenger", "middleware" => ["auth", "passengerCheck"
     Route::get('/payments', [PaymentController::class, 'index']);
     Route::get('/comming', [TripController::class, 'comming']);
     Route::get('/expired', [TripController::class, 'expired']);
+    Route::get('/track', [TripController::class, 'track']);
 });
