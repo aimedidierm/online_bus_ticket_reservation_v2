@@ -60,7 +60,7 @@
                         {{$trip->trip->bus->driver}}
                     </td>
                     <td class="px-6 py-4">
-                        {{$trip->trip->origin}} To {{$trip->destination}}
+                        {{$trip->trip->origin}} To {{$trip->trip->destination}}
                     </td>
                     <td class="px-6 py-4">
                         {{$trip->trip->price}} Rwf

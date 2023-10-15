@@ -17,7 +17,7 @@ class TripController extends Controller
      */
     public function index()
     {
-        $trips = Trip::get();
+        $trips = Trip::latest()->get();
         $trips->load("bus");
         $buses = Bus::get();
         return view("admin.trips", ["trips" => $trips, "buses" => $buses]);
