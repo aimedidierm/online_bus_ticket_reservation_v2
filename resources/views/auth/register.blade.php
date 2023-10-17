@@ -13,7 +13,10 @@
 
     <body class="bg-gray-100 h-screen flex justify-center items-center">
         <div class="bg-white p-8 rounded-lg shadow-md w-96">
-            <h2 class="text-2xl font-semibold mb-6">Sign up</h2>
+            <h2 class="text-2xl font-semibold mb-6">Sign up</h2>@if($errors->any())
+            <span class="self-center text-1xl font-semibold whitespace-nowrap text-red-700">{{$errors->first()}}
+            </span>
+            @endif
             <form action="/register" method="POST">
                 @csrf
                 <div class="mb-4">
